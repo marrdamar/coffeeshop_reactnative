@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./public/logo.ico" alt="Logo" width="120" height="120">
+  <img src="./assets/logo.ico" alt="Logo" width="120" height="120">
 
   <h2 align="center">Coffee Shop</h2>
 
@@ -45,7 +45,7 @@ To run the application, follow these steps:
 If you would like to contribute to this project, please send a pull request to this repository. We greatly appreciate your contributions.
 
 ## Related Projects
-[CoffeeShop-Backend](https://new-back-end-hazel.vercel.app/)
+[CoffeeShop-Backend](https://new-back-end-hazel.vercel.app/) <br></br>
 [CoffeeShop-ReactJS](https://coffeeshop-react-silk.vercel.app/)
 
 ## Documentation
