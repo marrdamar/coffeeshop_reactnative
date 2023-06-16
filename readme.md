@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/logo.ico" alt="Logo" width="120" height="120">
+  <img src="https://private-user-images.githubusercontent.com/123706933/246350689-fb01709d-2b9e-438b-8a45-f33c18bca237.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJrZXkxIiwiZXhwIjoxNjg2OTAxNTgyLCJuYmYiOjE2ODY5MDEyODIsInBhdGgiOiIvMTIzNzA2OTMzLzI0NjM1MDY4OS1mYjAxNzA5ZC0yYjllLTQzOGItOGE0NS1mMzNjMThiY2EyMzcucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQUlXTkpZQVg0Q1NWRUg1M0ElMkYyMDIzMDYxNiUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyMzA2MTZUMDc0MTIyWiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9OWYzN2M0ZjIyOTIxMTU4ZDczNjZmNzI5NzYwNDZiMjVjNTVlYmI5YzI4NTgxN2E0OTVkM2ZiYzMzMmI2ODBmOCZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QifQ.P6TNEDyTQ7L8gQrFq6u6cLUd_JIXYSCTEVB-epWaz1Q" alt="Logo" width="120" height="120">
 
   <h2 align="center">Coffee Shop</h2>
 
