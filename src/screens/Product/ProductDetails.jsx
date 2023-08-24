@@ -25,9 +25,11 @@ const ProductDetails = () => {
   const [isLoading, setLoading] = useState(true);
   const [isToast, setToast] = useState(false);
   const [toastInfo, setToastInfo] = useState({});
-  const [dataProd, setDataProd] = useState({});
+  const [dataProd, setDataProd] = useState();
   const [size, setSize] = useState(1);
   const [newPrice, setNewPrice] = useState('');
+  const sizeL = 2000;
+  const sizeXL = 4000;
 
   const fetching = async () => {
     setLoading(true);
@@ -35,18 +37,18 @@ const ProductDetails = () => {
       const result = await getProductsDetails(id, controller);
       // console.log(result);
       setDataProd(result.data.data[0]);
-      setNewPrice(result.data.data.prices);
+      setNewPrice(result.data.data[0].prices);
       setLoading(false);
+      // console.log(newPrice)
     } catch (error) {
       console.log(error);
     }
   };
   
-  console.log(dataProd)
   useEffect(() => {
     fetching();
   }, []);
-  console.log(dataProd);
+  // console.log(dataProd);
 
   const handleAddToCart = () => {
     const cart = {
@@ -64,8 +66,8 @@ const ProductDetails = () => {
     setToast(true);
     dispatch(cartAction.addtoCart(cart));
   };
+  console.log(newPrice);
   // const image = dataProd.image
-  console.log(dataProd);
   return (
     <>
       {isLoading ? (
@@ -88,17 +90,17 @@ const ProductDetails = () => {
             </Pressable>
           )}
           <View style={styles.container}>
-            {/* {dataProd.image ? (
+            {dataProd.image ? (
               <Image source={{uri: dataProd.image}} style={styles.imageProd} />
             ) : (
               <Image
                 style={styles.imageProd}
                 source={require('../../assets/images/no-image.png')}
               />
-            )} */}
+            )}
             <Text style={styles.titleProd}>{dataProd.names}</Text>
             <Text style={styles.textPrice}>
-              {/* IDR {newPrice.toLocaleString('id-ID')} */}
+              {/* IDR {dataProd.prices.toLocaleString('id-ID')} */}
               IDR {dataProd.prices}
             </Text>
 
@@ -150,10 +152,13 @@ const ProductDetails = () => {
               </Pressable>
             </View>
             <View style={{marginTop: 20, width: '100%'}}>
-              <ButtonSecondary
+              {userRedux.role === 2 && (
+                <ButtonSecondary
                 title="Add to cart"
                 handlePress={handleAddToCart}
               />
+              )}
+              
             </View>
           </View>
         </ScrollView>
