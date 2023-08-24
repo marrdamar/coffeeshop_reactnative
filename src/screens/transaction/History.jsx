@@ -26,7 +26,7 @@ const Card = ({data, reff}) => {
     console.log(data.id);
     try {
       const result = await deleteTransaction(token, data.id, controller);
-      console.log(result);
+      // console.log(result);
       reff();
     } catch (error) {
       console.log(error);
@@ -60,8 +60,8 @@ const Card = ({data, reff}) => {
           />
         )}
         <View style={{marginLeft: 130}}>
-          <Text style={styles.titleProd}>{lengthText(data.prod_name)}</Text>
-          <Text style={styles.textPrice}>{data.price}</Text>
+          <Text style={styles.titleProd}>{lengthText(data.names)}</Text>
+          <Text style={styles.textPrice}>{data.prices}</Text>
           <Text style={styles.textInfo}>
             {data.method === 'Door Delivery' ? 'Door Deliv' : data.method} at{' '}
             {new Date(data.created_at).toLocaleDateString()}
@@ -90,7 +90,9 @@ const History = () => {
       const result = await getHistory(userRedux.token, controller);
       setData(result.data.data);
       setLoading(false);
+      console.log(result)
     } catch (error) {
+      console.log('no data')
       console.log(error);
     }
   };
@@ -103,8 +105,10 @@ const History = () => {
 
   return (
     <>
-      {isLoading ? (
-        <LoaderScreen />
+      {data.length === 0 ? (
+        <Text style={styles.textBold}>
+        {'>>>      - No Order History -     <<<'}
+      </Text>
       ) : (
         <ScrollView
           style={{
@@ -141,6 +145,11 @@ const styles = StyleSheet.create({
     borderLeftWidth: 0,
     borderBottomColor: '#6A4029',
     paddingVertical: 6,
+  },
+  textBold: {
+    fontFamily: 'Poppins-Bold',
+    color: '#6A4029',
+    fontSize: 20,
   },
   imageProd: {
     width: 120,

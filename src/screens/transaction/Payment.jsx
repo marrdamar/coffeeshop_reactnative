@@ -40,15 +40,16 @@ const Payment = () => {
       const {image, prodName, price, qty, ...newItem} = item;
       return {...newItem, subtotal: price * qty, qty};
     });
+    console.log(dataShopping)
     const body = {
       promo_id: 1,
-      delivery_id: cartRedux.delivery,
+      deliveries_id: cartRedux.delivery,
       notes: '',
-      pay_status_id: 1,
+      status_id: 1,
       payment_id: 1,
       products: dataShopping,
     };
-    // console.log('BODY FETCHING', body);
+    console.log('BODY FETCHING', body);
     setLoading(true);
     try {
       const result = await addTransactions(

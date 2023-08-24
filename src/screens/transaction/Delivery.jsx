@@ -35,7 +35,7 @@ const ModalEdit = ({showModal, closeModal}) => {
             <Modal.Header>Delete</Modal.Header>
             <Modal.Body>
               <View style={{marginBottom: 24, width: '100%'}}>
-                <Text style={styles.textLabel}>DisplayName :</Text>
+                <Text style={styles.textLabel}>Display Name :</Text>
                 <TextInput
                   style={globalStyle.inputLine}
                   placeholder="Enter receiver name"
@@ -56,7 +56,7 @@ const ModalEdit = ({showModal, closeModal}) => {
                 />
               </View>
               <View style={{marginBottom: 24, width: '100%'}}>
-                <Text style={styles.textLabel}>phone :</Text>
+                <Text style={styles.textLabel}>Phone Number :</Text>
                 <TextInput
                   style={globalStyle.inputLine}
                   placeholder="Enter your phone number"

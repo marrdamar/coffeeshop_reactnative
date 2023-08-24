@@ -23,20 +23,26 @@ import ButtonSecondary from '../../components/ButtonSecondary';
 import ButtonPrimary from '../../components/ButtonPrimary';
 import ModalMsg from '../../components/ModalMsg';
 import LoaderScreen from '../../components/LoaderScreen';
+import ToastFetching from '../../components/ToastFetching';
 
 const Card = ({data, reff}) => {
   const {token} = useSelector(state => state.user);
   const controller = useMemo(() => new AbortController(), []);
   const [isLoading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [toastInfo, setToastInfo] = useState({});
+  const [isToast, setToast] = useState(false);
   // console.log("STATUS ORDER",data.pay_status_id);
 
   const handleDone = async () => {
     console.log(data.id);
+    // console.log(userRedux.token)
     setLoading(true);
     try {
       const result = await changeOrderDone(token, data.id, controller);
-      console.log(result);
+      console.log('Transaksi Telah Dibayar!');
+      setToastInfo({msg: 'Transaksi Dibayar!', display: 'success'});
+      setToast(true);
       reff();
       setLoading(false);
     } catch (error) {
@@ -45,7 +51,7 @@ const Card = ({data, reff}) => {
       setLoading(false);
     }
   };
-  console.log(data)
+  // console.log(data)
   // const lengthText = text => {
   //   if (text.length > 15) {
   //     return text.substring(0, 12) + '...';
@@ -65,11 +71,16 @@ const Card = ({data, reff}) => {
         />
       )}
       <View style={{marginLeft: 130}}>
+        
+      <ToastFetching
+        isShow={isToast}
+        onClose={() => setToast(false)}
+        info={toastInfo}
+      />
         <Text style={styles.titleProd}>
-          {/* {lengthText(data.prod_name)} */}
-          {data.prod_name}
+          {data.names}
         </Text>
-        <Text style={styles.textPrice}>{data.prices}</Text>
+        <Text style={styles.textPrice}>{data.prices} - {data.id}</Text>
         <Text style={styles.textInfo}>
           {data.method === 'Door Delivery' ? 'Door Deliv' : data.method} at{' '}
           {new Date(data.created_at).toLocaleDateString()}
@@ -106,6 +117,7 @@ const ManageOrder = () => {
     try {
       const result = await getAllOrder(userRedux.token, controller);
       setData(result.data.data);
+      // console.log(data)
       const resDone = await getDoneOrder(userRedux.token, controller);
       setDataDone(resDone.data.data);
       setLoading(false);
