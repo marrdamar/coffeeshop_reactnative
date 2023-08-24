@@ -42,6 +42,8 @@ const Profile = () => {
   const [dataOrder, setDataOrder] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  // const [isToast, setToast] = useState(false);
+  // const [toastInfo, setToastInfo] = useState({})
 
   const fetching = async () => {
     setLoading(true);
@@ -49,20 +51,32 @@ const Profile = () => {
       const result = await getProfile(userRedux.token, controller);
       console.log('DATA PROFILE');
       setData(result.data.data);
-      const getHistoryOrder = await getHistory(userRedux.token, controller);
-      // console.log('HISTORY ORDER', getHistoryOrder.data.data);
-      setDataOrder(getHistoryOrder.data.data);
       setLoading(false);
     } catch (error) {
       console.log(error);
     }
   };
 
+  const handleTrans = async () => {
+    try {
+      const getHistoryOrder = await getHistory(userRedux.token, controller);
+      // console.log('HISTORY ORDER', getHistoryOrder.data.data);
+      setDataOrder(getHistoryOrder.data.data);
+      if (getHistoryOrder === null) {
+        console.log('belum ada trans')
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     const unsubFocus = navigation.addListener('focus', () => {
       fetching();
+      handleTrans();
     });
     fetching();
+    handleTrans();
     return unsubFocus;
   }, []);
 
