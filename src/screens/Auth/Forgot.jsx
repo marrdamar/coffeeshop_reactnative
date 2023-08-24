@@ -40,7 +40,7 @@ const Forgot = () => {
       }
     } catch (error) {
       console.log(error.response);
-      console.log(error.response.status);
+      console.log(error.status);
       setLoading(false);
     }
   };
@@ -55,13 +55,27 @@ const Forgot = () => {
     setLoading(true);
     try {
       const result = await setPassbyForgot(email, otp, password, controller);
-      console.log(result.data);
+      // if (result.status === 403) {
+      //   setToast(true);
+      //   setToastInfo({msg: 'OTP Salah!', display: 'error'});
+      // } else if (result.status === 500) {
+      //   setToast(true);
+      //   setToastInfo({msg: 'Input Salah!', display: 'error'});
+      // } 
+      // else {
+      //   navigation.replace('Login');
+      // }
       if (result.status === 200) {
         navigation.replace('Login');
       }
       setLoading(false);
     } catch (error) {
-      console.log(error.response);
+      if (error.response !== 200) {
+        setToast(true);
+        setToastInfo({msg: 'Wrong OTP Code!', display: 'error'});
+      }
+      // console.log('otp salah')
+      // console.log(error.response);
       setLoading(false);
     }
   };

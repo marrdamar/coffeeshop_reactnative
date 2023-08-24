@@ -41,11 +41,11 @@ const Login = () => {
       return;
     }
     setLoading(true);
-    // console.log(formEmail, formPass);
+    console.log(formEmail, formPass);
     const form = {email: formEmail, password: formPass};
     try {
       const result = await fetchLogin(form, controller);
-      // console.log(result);
+      console.log(result);
       dispatch(userAction.authLogin(result.data));
       navigation.replace('Drawer');
       setLoading(false);
