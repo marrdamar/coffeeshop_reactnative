@@ -19,7 +19,9 @@ export const register = (email, password, phone_number, controller) => {
 
 export const forgotEmail = (email, controller) => {
   const url = `${baseUrl}/auth/forgot`;
-  return axios.patch(url, {email}, {signal: controller.signal});
+  const body = {email};
+  console.log(body)
+  return axios.patch(url, body, {signal: controller.signal});
 };
 
 export const setPassbyForgot = (email, otpCode, password, controller) => {
