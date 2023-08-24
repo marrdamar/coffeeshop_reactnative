@@ -20,8 +20,8 @@ export const getHistory = (token, controller) => {
   });
 };
 
-export const deleteTransaction = (token, transactionId, controller) => {
-  const url = `${baseUrl}/transactions/${transactionId}`;
+export const deleteTransaction = (token, id, controller) => {
+  const url = `${baseUrl}/transactions/${id}`;
   return axios.delete(url, {
     signal: controller.signal,
     headers: {Authorization: `Bearer ${token}`},
@@ -29,7 +29,7 @@ export const deleteTransaction = (token, transactionId, controller) => {
 };
 
 export const getAllOrder = (token, controller) => {
-  const url = `${baseUrl}/transactions`;
+  const url = `${baseUrl}/transactions/allhist`;
   return axios.get(url, {
     signal: controller.signal,
     headers: {Authorization: `Bearer ${token}`},
@@ -37,7 +37,7 @@ export const getAllOrder = (token, controller) => {
 };
 
 export const getDoneOrder = (token, controller) => {
-  const url = `${baseUrl}/transactions/getpaid`;
+  const url = `${baseUrl}/transactions/getallpaid`;
   return axios.get(url, {
     signal: controller.signal,
     headers: {Authorization: `Bearer ${token}`},
