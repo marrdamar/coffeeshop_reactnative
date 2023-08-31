@@ -38,7 +38,7 @@ export const createProduct = (token, file, body, controller) => {
 };
 
 export const updateProduct = (token, id, file, body, controller) => {
-  const url = `${baseUrl}/products/${id}`;
+  const url = `${baseUrl}/products/cloud/${id}`;
   const formData = new FormData();
   if (file !== '') {
     formData.append('image', {

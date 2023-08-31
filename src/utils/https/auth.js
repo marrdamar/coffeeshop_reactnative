@@ -59,8 +59,9 @@ export const updateProfile = (token, file, body, controller) => {
   // Object.keys(body).forEach(key => {
   //   formData.set(key, body[key]);
   // });
-  // console.log('FORMDATA', formData);
-  return axios.patch(url, formData, {
+  console.log('BODY', body)
+  console.log('FORMDATA', formData);
+  return axios.patch(url, formData,{
     signal: controller.signal,
     headers: {
       Authorization: `Bearer ${token}`,
