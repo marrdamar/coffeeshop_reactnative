@@ -7,7 +7,7 @@ import {
   Pressable,
   StyleSheet,
 } from 'react-native';
-import {NativeBaseProvider, Radio, Stack, Box, Menu} from 'native-base';
+import {NativeBaseProvider, Radio, Stack, Box, Menu, NumberInput} from 'native-base';
 import React, {useEffect, useMemo, useState} from 'react';
 import ButtonSecondary from '../../components/ButtonSecondary';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
@@ -50,7 +50,7 @@ const EditProduct = () => {
   const [fileImage, setFileImage] = useState('');
   const [name, setName] = useState('');
   const [category, setCategory] = useState(0);
-  const [prices, setprices] = useState('');
+  const [prices, setprices] = useState(0);
   const [desc, setDesc] = useState('');
 
   const fetching = async () => {
@@ -69,7 +69,7 @@ const EditProduct = () => {
       setLoading(false);
     }
   };
-
+console.log(dataProd);
   useEffect(() => {
     fetching();
   }, []);
@@ -264,7 +264,7 @@ const EditProduct = () => {
               </View>
 
               <View style={{marginBottom: 24, width: '100%'}}>
-                <Text style={styles.textLabel}>prices :</Text>
+                <Text style={styles.textLabel}>Prices :</Text>
                 <TextInput
                   style={globalStyle.inputLine}
                   value={prices}
