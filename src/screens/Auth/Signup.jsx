@@ -26,26 +26,53 @@ const Signup = () => {
     if (userRedux.token) navigation.replace('Drawer');
   }, []);
 
+  
+  function isValidEmail (formEmail) {
+    return /\S+@\S+\.\S+/.test(formEmail);
+  }
+  function isValidPass (formPass) {
+    return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(formPass);
+  }
+
   const handleSubmit = async () => {
     if ((formEmail === '', formPass === '', formPhone === '')) {
       setToast(true);
       setToastInfo({msg: 'Input Empty', display: 'error'});
+      
+    } 
+    else if (!isValidEmail(formEmail)){
+      setToast(true);
+      setToastInfo({msg: 'Email is inValid', display: 'error'});
+      console.log('email invalid')
+      
+    } 
+    else if (!isValidPass(formPass)) {
+      setToast(true);
+      setToastInfo({msg: 'Password must contain Uppercase letter and Number!', display: 'error'});
+      console.log('pass invalid')
       return;
-    }
+    } 
+    // else if (isValidPass(formPass)) {
+    //   console.log('pass valid')
+    // } else {
+    //   setToast(true);
+    //   setToastInfo({msg: 'Pass is Not Valid', display: 'error'});
+    //   return;
+    // }
     setLoading(true);
     console.log(formEmail, formPass, formPhone);
     try {
       const result = await register(formEmail, formPass, formPhone, controller);
-      console.log(result);
+      // console.log(result);
       setToast(true);
       setToastInfo({msg: 'Register Success', display: 'success'});
       setSuccess(true);
       setLoading(false);
     } catch (error) {
       console.log(error);
-      if (error.response && error.response.status === 401) {
+      if (error.response !== 200) {
         setToast(true);
-        setToastInfo({msg: error.response.data.msg, display: 'error'});
+        setToastInfo({msg: 'Email has been registered!', display: 'error'});
       }
       setLoading(false);
     }
