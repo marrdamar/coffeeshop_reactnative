@@ -61,14 +61,12 @@ const EditProfile = () => {
     setLoading(true);
     try {
       const result = await getProfile(userRedux.token, controller);
-      // console.log('DATA PROFILE', result.data.data);
+      console.log('DATA PROFILE', result.data.data);
       setData(result.data.data);
       setDisName(result.data.data.display_name || '');
       setFirstName(result.data.data.first_name || '');
       setLastName(result.data.data.last_name || '');
       setGender(result.data.data.genders || '');
-      setEmail(result.data.data.email || '');
-      setPhone(result.data.data.phone_number || '');
       setDate(new Date(result.data.data.birth_date) || new Date());
       setAddress(result.data.data.address || '');
       setLoading(false);
@@ -154,10 +152,9 @@ const EditProfile = () => {
   const handleEditProfile = async () => {
     const userData = {};
     if (disName !== '') userData.display_name = disName;
-    if (firstName !== '') userData.last_name = firstName;
+    if (firstName !== '') userData.first_name = firstName;
     if (lastName !== '') userData.last_name = lastName;
     if (gender !== '') userData.genders = gender;
-    if (email !== '') userData.phone_number = phone;
     if (date !== new Date()) userData.birth_date = date.toLocaleDateString();
     if (address !== '') userData.address = address;
     // const userData = {
@@ -292,7 +289,7 @@ const EditProfile = () => {
                 </Stack>
               </Radio.Group>
 
-              <View style={{marginBottom: 24, width: '100%'}}>
+              {/* <View style={{marginBottom: 24, width: '100%'}}>
                 <Text style={styles.textLabel}>Email :</Text>
                 <TextInput
                   style={globalStyle.inputLine}
@@ -312,7 +309,7 @@ const EditProfile = () => {
                   keyboardType="numeric"
                   placeholderTextColor={'black'}
                 />
-              </View>
+              </View> */}
               {/* BRITHDATE */}
               <View style={{marginBottom: 24, width: '100%'}}>
                 <Text style={styles.textLabel}>Birth Date :</Text>
